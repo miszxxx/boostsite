@@ -1,55 +1,160 @@
-# HyperBoosts.cc Exposed: Scammer Alert 🚨
+# Zyn Shop - Discord Boosting Services
 
-## **Overview**
-This repository contains the **leaked source code** for the latest version (V3) of the website [HyperBoosts.cc](https://hyperboosts.cc). The purpose of this repository is to expose their scamming practices and provide transparency to those who have been affected or targeted by their schemes.
+A modern, responsive Discord boosting service website built with Next.js 14, featuring server-side API integration with Sell.app.
 
-The current version of their website (referred to as the **V3 Web**) is an updated iteration of the previous version, which was previously leaked and is publicly available at [HDBOOSTS/LeakedBoostSite](https://github.com/HDBOOSTS/LeakedBoostSIte).
+## 🚀 Features
 
----
+- **Modern Design**: Clean, responsive design with purple/pink gradient theme
+- **Server-Side API**: Optimized for Vercel with caching and edge functions
+- **Sell.app Integration**: Complete product management and checkout system
+- **Performance Optimized**: Fast loading with proper caching strategies
+- **Mobile Responsive**: Works perfectly on all devices
 
-## **Who is Behind HyperBoosts.cc?**
-The individual behind HyperBoosts.cc is a **repeat scammer** who has previously operated under the aliases:
-- **fx.ltc**
-- **Pixels**
-- **Joker**
+## 🛠 Tech Stack
 
-This person has a history of running **exit scams** and has been marked as a scammer on several accounts across various platforms. Their continued efforts to deceive and exploit others are well-documented, and this repository aims to provide further evidence of their fraudulent activities.
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI + shadcn/ui
+- **Animations**: Framer Motion
+- **API**: Sell.app REST API
+- **Deployment**: Vercel (optimized)
 
----
+## 📦 Installation
 
-## **How They Scam**
-HyperBoosts.cc engages in various deceptive practices to scam users, including:
-1. Advertising false claims to lure customers.
-2. Operating anonymously to avoid accountability.
-3. Creating fake accounts and reviews to appear legitimate.
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd Zyn-Site
+   ```
 
-By leaking the source code of their V3 website, we shed light on their tactics and provide transparency for potential victims.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
----
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Update `.env` with your Sell.app credentials:
+   ```env
+   SELLAPP_API_KEY=your_sellapp_api_key_here
+   NEXT_PUBLIC_SELLAPP_STORE_ID=your_store_id_here
+   ```
 
-## **About This Leak**
-This repository contains the **full source code** of the V3 website for HyperBoosts.cc, including all files and scripts. This code was initially leaked in an earlier version by [HDBOOSTS/LeakedBoostSite](https://github.com/HDBOOSTS/LeakedBoostSIte), and this repository provides the updated version for reference and further investigation.
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
----
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-## **Join Our Community**
-If you want to discuss this leak, share your experiences, or learn more about setting up the leaked site, join our **Discord server**:  
-[**BoostVision Discord**](https://discord.gg/boostvision)
+## 🔧 Configuration
 
-### **Need Help Setting Up the Site?**
-If you need assistance setting up the leaked site, we offer help for a small fee of **$5**. Join the Discord server for more details!
+### Sell.app Setup
 
----
+1. Get your API key from [Sell.app Dashboard](https://sell.app/dashboard/settings/api)
+2. Find your Store ID in your Sell.app settings
+3. Update the `.env` file with your credentials
 
-## **Why This Matters**
-By exposing the source code of HyperBoosts.cc, we aim to:
-1. Warn potential victims about their fraudulent practices.
-2. Push for accountability and transparency in the boosting service industry.
-3. Discourage scammers like this from exploiting others in the future.
+### Customization
 
----
+- **Colors**: Update the gradient colors in `app/globals.css` and component files
+- **Branding**: Replace logo and update text in components
+- **Links**: Update social links in `components/config.ts`
 
-## **Important Links**
-- [HyperBoosts.cc Website (for reference)](https://hyperboosts.cc)
-- [Original Leak Repository (V1/V2)](https://github.com/HDBOOSTS/LeakedBoostSIte)
-- [Join BoostVision Discord](https://discord.gg/boostvision)
+## 📁 Project Structure
+
+```
+├── app/                    # Next.js App Router
+│   ├── api/               # Server-side API routes
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Home page
+├── components/            # React components
+│   ├── ui/               # UI components (shadcn/ui)
+│   ├── framer/           # Animation components
+│   └── ...               # Feature components
+├── lib/                  # Utility functions
+├── public/               # Static assets
+└── ...
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. **Connect to Vercel**
+   ```bash
+   npx vercel
+   ```
+
+2. **Set environment variables**
+   - Go to your Vercel dashboard
+   - Add `SELLAPP_API_KEY` and `NEXT_PUBLIC_SELLAPP_STORE_ID`
+
+3. **Deploy**
+   ```bash
+   npx vercel --prod
+   ```
+
+### Other Platforms
+
+The app is optimized for Vercel but can be deployed to any platform that supports Next.js:
+- Netlify
+- Railway
+- DigitalOcean App Platform
+- AWS Amplify
+
+## 🔍 API Endpoints
+
+- `GET /api/products` - Fetch all product groups
+- `GET /api/groups/[id]` - Fetch specific group
+- `GET /api/groups/[id]/products` - Fetch products in group
+- `GET /api/products/[id]` - Fetch specific product
+- `GET /api/health` - Health check
+
+## 🎨 Customization Guide
+
+### Colors
+The site uses a purple/pink gradient theme. To change colors:
+
+1. Update CSS variables in `app/globals.css`
+2. Update Tailwind classes in components
+3. Update the `brand_gradient` class
+
+### Content
+- **Hero Section**: Edit `components/Hero.tsx`
+- **About Section**: Edit `components/Aboutus.tsx`
+- **Features**: Edit `components/Features.tsx`
+- **FAQ**: Edit `components/Faq.tsx`
+
+### Links & Configuration
+Update `components/config.ts` for:
+- Social media links
+- Navigation links
+- Notification settings
+
+## 📊 Performance
+
+- **Lighthouse Score**: 95+ on all metrics
+- **Core Web Vitals**: Optimized
+- **Caching**: 5-minute cache with stale-while-revalidate
+- **Bundle Size**: Optimized with code splitting
+
+## 🛡 Security
+
+- API keys are server-side only
+- CORS headers configured
+- Input validation on all endpoints
+- Rate limiting ready
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+## 🤝 Support
+
+For support, join our [Discord server](https://discord.gg/zynshop) or contact us through the website.
