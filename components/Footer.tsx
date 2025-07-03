@@ -2,17 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  ChevronRight, 
-  ArrowUp,
-  Bitcoin,
-  CreditCard,
-  Wallet,
-  DollarSign,
-  CircleDollarSign,
-  Banknote,
-  LucideIcon
-} from "lucide-react";
+import { ChevronRight, ArrowUp, Bitcoin, CreditCard, Wallet, DollarSign, CircleDollarSign, Banknote, DivideIcon as LucideIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";

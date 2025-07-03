@@ -5,37 +5,72 @@ import RevealAnimation from "./framer/RevealAnimation";
 import { ShoppingBag } from "lucide-react";
 import DisplayProducts from "./DisplayProducts";
 import Script from "next/script";
+import { api } from "@/lib/api";
 
 const Products = () => {
   const [productsData, setProductsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(
-          `https://sell.app/api/v2/groups?timestamp=${Date.now()}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_SELLAPP_API_KEY}`,
-            },
-          }
-        );
-
-        if (!res.ok) {
-          throw new Error(`Failed to fetch products: ${res.statusText}`);
-        }
-
-        const data = await res.json();
+        setLoading(true);
+        setError(null);
+        
+        const data = await api.getGroups(Date.now().toString());
         setProductsData(data);
       } catch (error) {
         console.error("Error fetching products:", error);
+        setError("Failed to load products. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
+
+  if (loading) {
+    return (
+      <section id="products" className="relative pt-24 flex flex-col items-center px-4 middle overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-[#f4adfb]/10 blur-[100px]" />
+          <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-[#5b2873]/10 blur-[100px]" />
+        </div>
+        <div className="container relative mx-auto px-4">
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-[#f4adfb]/5 px-4 py-2 backdrop-blur-sm">
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#f4adfb] border-t-transparent"></div>
+              <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-lg font-medium text-transparent">
+                Loading Products...
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="products" className="relative pt-24 flex flex-col items-center px-4 middle overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-[#f4adfb]/10 blur-[100px]" />
+          <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-[#5b2873]/10 blur-[100px]" />
+        </div>
+        <div className="container relative mx-auto px-4">
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/5 px-4 py-2 backdrop-blur-sm">
+              <span className="text-red-400 text-lg font-medium">
+                {error}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="products" className="relative pt-24 flex flex-col items-center px-4 middle overflow-hidden">

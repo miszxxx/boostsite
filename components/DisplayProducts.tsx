@@ -81,13 +81,30 @@ const DisplayProducts = ({ products }: { products: any }) => {
   };
 
   if (!products?.data) {
-    return <div className="px-4 mt-10 text-center">Loading products...</div>;
+    return (
+      <div className="px-4 mt-10 text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-[#f4adfb]/5 px-4 py-2 backdrop-blur-sm">
+          <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#f4adfb] border-t-transparent"></div>
+          <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-lg font-medium text-transparent">
+            Loading products...
+          </span>
+        </div>
+      </div>
+    );
   }
 
   const productGroups = products.data;
 
   if (!productGroups || productGroups.length === 0) {
-    return <div className="px-4 mt-10 text-center">No products available</div>;
+    return (
+      <div className="px-4 mt-10 text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-yellow-500/20 bg-yellow-500/5 px-4 py-2 backdrop-blur-sm">
+          <span className="text-yellow-400 text-lg font-medium">
+            No products available
+          </span>
+        </div>
+      </div>
+    );
   }
 
   return (
