@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server';
+import { getDatabase } from '@/lib/mongodb';
 
 export async function GET() {
   try {
+    // Test MongoDB connection
+    const db = await getDatabase();
+    await db.admin().ping();
+    
     // Test Sell.app API connection
     const response = await fetch('https://sell.app/api/v2/groups?limit=1', {
       headers: {
@@ -14,7 +19,8 @@ export async function GET() {
     return NextResponse.json({
       status: 'ok',
       timestamp: new Date().toISOString(),
-      api: {
+      services: {
+        mongodb: 'connected',
         sellapp: isApiHealthy ? 'connected' : 'disconnected',
       },
       environment: process.env.NODE_ENV,
@@ -25,6 +31,7 @@ export async function GET() {
         status: 'error',
         timestamp: new Date().toISOString(),
         error: 'Health check failed',
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

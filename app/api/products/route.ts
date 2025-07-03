@@ -1,35 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sellAppAPI } from '@/lib/sellapp';
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const timestamp = searchParams.get('timestamp') || Date.now().toString();
+    const timestamp = searchParams.get('timestamp');
 
-    const response = await fetch(`https://sell.app/api/v2/groups?timestamp=${timestamp}`, {
-      method: 'GET',
+    const result = await sellAppAPI.getGroups(timestamp || undefined);
+
+    return NextResponse.json(result.data, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.SELLAPP_API_KEY}`,
-      },
-      // Add caching for Vercel
-      next: { revalidate: 300 }, // Cache for 5 minutes
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch products: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-
-    return NextResponse.json(data, {
-      headers: {
-        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        'Cache-Control': result.cached 
+          ? 'public, s-maxage=3600, stale-while-revalidate=86400' // Longer cache for cached data
+          : 'public, s-maxage=300, stale-while-revalidate=600',   // Shorter cache for fresh data
+        'X-Data-Source': result.cached ? 'cache' : 'api',
       },
     });
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('Error in products API:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch products' },
+      { error: 'Failed to fetch products', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }

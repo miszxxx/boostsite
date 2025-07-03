@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sellAppAPI } from '@/lib/sellapp';
 
 export async function GET(
   request: NextRequest,
@@ -7,24 +8,14 @@ export async function GET(
   try {
     const productId = params.id;
 
-    const response = await fetch(`https://sell.app/api/v2/products/${productId}`, {
-      method: 'GET',
+    const result = await sellAppAPI.getProduct(productId);
+
+    return NextResponse.json(result.data, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.SELLAPP_API_KEY}`,
-      },
-      next: { revalidate: 300 },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch product: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-
-    return NextResponse.json(data, {
-      headers: {
-        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        'Cache-Control': result.cached 
+          ? 'public, s-maxage=3600, stale-while-revalidate=86400'
+          : 'public, s-maxage=300, stale-while-revalidate=600',
+        'X-Data-Source': result.cached ? 'cache' : 'api',
       },
     });
   } catch (error) {

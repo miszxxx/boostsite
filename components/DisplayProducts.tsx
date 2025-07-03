@@ -6,6 +6,7 @@ import { ArrowRight, Check, InfinityIcon } from "lucide-react";
 import RevealAnimation from "./framer/RevealAnimation";
 import { cn } from "@/lib/utils";
 import Script from "next/script";
+import Link from "next/link";
 
 type SellAppProduct = {
   id: number;
@@ -181,23 +182,40 @@ const DisplayProducts = ({ products }: { products: any }) => {
                             ))}
                           </div>
 
-                          <div className="relative group/button overflow-hidden rounded-lg border border-[#f4adfb]/20 hover:border-[#f4adfb]/30 mt-6">
-                            <div className="absolute inset-0 opacity-0 group-hover/button:opacity-100 transition-opacity duration-300">
-                              <div className="absolute inset-0 bg-gradient-to-r from-[#f4adfb] to-[#5b2873]" />
+                          <div className="flex gap-2 mt-6">
+                            {/* View Details Button */}
+                            <Link href={`/product/${product.slug}`} className="flex-1">
+                              <div className="relative group/button overflow-hidden rounded-lg border border-[#f4adfb]/20 hover:border-[#f4adfb]/30">
+                                <div className="absolute inset-0 opacity-0 group-hover/button:opacity-100 transition-opacity duration-300">
+                                  <div className="absolute inset-0 bg-gradient-to-r from-[#f4adfb]/20 to-[#5b2873]/20" />
+                                </div>
+                                <button className="relative w-full py-3 text-sm bg-[#f4adfb]/5 backdrop-blur-sm">
+                                  <span className="flex items-center justify-center gap-2">
+                                    View Details
+                                  </span>
+                                </button>
+                              </div>
+                            </Link>
+
+                            {/* Quick Purchase Button */}
+                            <div className="relative group/button overflow-hidden rounded-lg border border-[#f4adfb]/20 hover:border-[#f4adfb]/30">
+                              <div className="absolute inset-0 opacity-0 group-hover/button:opacity-100 transition-opacity duration-300">
+                                <div className="absolute inset-0 bg-gradient-to-r from-[#f4adfb] to-[#5b2873]" />
+                              </div>
+                              <button
+                                className="relative px-4 py-3 text-sm bg-[#f4adfb]/5 backdrop-blur-sm"
+                                data-sell-store={process.env.NEXT_PUBLIC_SELLAPP_STORE_ID}
+                                data-sell-product={product?.id}
+                                data-sell-darkmode="true"
+                                data-sell-theme="f4adfb"
+                                type="button"
+                              >
+                                <span className="flex items-center justify-center gap-2 transition-transform duration-300 group-hover/button:translate-x-[-10px]">
+                                  Buy
+                                  <ArrowRight className="w-4 h-4 transition-all duration-300 opacity-0 group-hover/button:opacity-100 group-hover/button:translate-x-[20px]" />
+                                </span>
+                              </button>
                             </div>
-                            <button
-                              className="relative w-full py-3 text-sm bg-[#f4adfb]/5 backdrop-blur-sm"
-                              data-sell-store={process.env.NEXT_PUBLIC_SELLAPP_STORE_ID}
-                              data-sell-product={product?.id}
-                              data-sell-darkmode="true"
-                              data-sell-theme="f4adfb"
-                              type="button"
-                            >
-                              <span className="flex items-center justify-center gap-2 transition-transform duration-300 group-hover/button:translate-x-[-10px]">
-                                Purchase
-                                <ArrowRight className="w-4 h-4 transition-all duration-300 opacity-0 group-hover/button:opacity-100 group-hover/button:translate-x-[20px]" />
-                              </span>
-                            </button>
                           </div>
                         </div>
                       </div>
