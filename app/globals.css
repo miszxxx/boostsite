@@ -58,7 +58,7 @@ body {
 }
 
 .brand_gradient {
-  @apply bg-gradient-to-tr from-[#ff4059] to-[#a73cde];
+  @apply bg-gradient-to-tr from-[#f4adfb] to-[#5b2873];
 }
 
 .discord-shadow {

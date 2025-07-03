@@ -8,16 +8,16 @@ const OutfitFont = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Hyper Boosts | #1 Discord Shop",
+  title: "Zyn Shop | #1 Discord Shop",
   description:
-    "Hyper Boosts is a Discord shop that sells high-quality Discord boosts, tools, and more. We offer a wide range of services to help you grow your community. Vincz Boosts is not affiliated or endorsed by Discord in any way.",
+    "Zyn Shop is a Discord shop that sells high-quality Discord boosts, tools, and more. We offer a wide range of services to help you grow your community. Zyn Shop is not affiliated or endorsed by Discord in any way.",
   icons: {
     icon: "logo.png",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ed3f75",
+  themeColor: "#f4adfb",
 };
 
 export default function RootLayout({

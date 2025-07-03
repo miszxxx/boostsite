@@ -96,7 +96,7 @@ const IconButton: React.FC<IconButtonProps> = ({ href, icon: Icon, label }) => {
           ) : (
             <Icon className="h-[18px] w-[18px]" />
           )}
-          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
+          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#f4adfb] to-[#5b2873] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
         </Button>
       </motion.div>
     </Link>
@@ -145,7 +145,7 @@ const NewsletterForm: React.FC = () => {
           value={email}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           placeholder="Enter your email"
-          className="w-full px-4 py-3 rounded-lg bg-gray-800/20 border border-gray-700 focus:border-purple-500 focus:outline-none transition-colors duration-200 text-sm"
+          className="w-full px-4 py-3 rounded-lg bg-gray-800/20 border border-gray-700 focus:border-[#f4adfb] focus:outline-none transition-colors duration-200 text-sm"
         />
         <motion.div
           whileHover={{ scale: 1.1 }}
@@ -154,7 +154,7 @@ const NewsletterForm: React.FC = () => {
         >
           <Button 
             type="submit" 
-            className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-6 py-2 rounded-md transition-all duration-200 shadow-lg hover:shadow-pink-500/25"
+            className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] hover:from-[#f4adfb] hover:to-[#5b2873] text-white px-6 py-2 rounded-md transition-all duration-200 shadow-lg hover:shadow-[#f4adfb]/25"
           >
             <span className="flex items-center gap-2">
               Subscribe
@@ -195,24 +195,24 @@ const Footer: React.FC = () => {
               >
                 <Image 
                   src="/logo.png" 
-                  alt="Hyper Boosts" 
+                  alt="Zyn Shop" 
                   width={40} 
                   height={40} 
                   className="rounded-lg"
                 />
-                <span className="text-2xl font-bold PoseidonFont bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-                  Hyper Boosts
+                <span className="text-2xl font-bold PoseidonFont bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-transparent">
+                  Zyn Shop
                 </span>
               </motion.div>
             </Link>
             
             <p className="text-brandGray/90 leading-relaxed">
-              Hyper Boosts is a Discord shop that sells high-quality Discord boosts, tools, and more. 
+              Zyn Shop is a Discord shop that sells high-quality Discord boosts, tools, and more. 
               We offer a wide range of services to help you grow your community.
             </p>
             
-            <p className="text-sm font-medium bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-              Hyper Boosts is not affiliated or endorsed by Discord in any way.
+            <p className="text-sm font-medium bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-transparent">
+              Zyn Shop is not affiliated or endorsed by Discord in any way.
             </p>
 
             <div className="mt-4">
@@ -246,7 +246,7 @@ const Footer: React.FC = () => {
                     whileHover={{ x: 10 }}
                     className="group flex items-center gap-2 text-brandGray hover:text-white transition-colors duration-200"
                   >
-                    <ChevronRight className="w-4 h-4 group-hover:text-purple-400 transition-colors duration-200" />
+                    <ChevronRight className="w-4 h-4 group-hover:text-[#f4adfb] transition-colors duration-200" />
                     <span className="text-sm">{link?.name}</span>
                   </motion.div>
                 </Link>
@@ -259,11 +259,11 @@ const Footer: React.FC = () => {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-6">
           <p className="text-sm text-brandGray/80">
-            &copy; {new Date().getFullYear()} Hyper Boosts. All rights reserved.
+            &copy; {new Date().getFullYear()} Zyn Shop. All rights reserved.
           </p>
           
           <Link 
-            href="https://discord.gg/hyperboosts" 
+            href="https://discord.gg/zynshop" 
             target="_blank"
           >
             <motion.div 
@@ -272,9 +272,9 @@ const Footer: React.FC = () => {
             >
               <div className="flex flex-col items-center md:items-end">
                 <span className="text-xs text-brandGray/70">Developed By</span>
-                <span className="font-bold text-[#ec3d6f] relative">
-                  <span className="absolute inset-0 bg-[#ec3d6f]/20 blur-lg group-hover:blur-xl transition-all duration-200" />
-                  <span className="relative">Choppa</span>
+                <span className="font-bold text-[#f4adfb] relative">
+                  <span className="absolute inset-0 bg-[#f4adfb]/20 blur-lg group-hover:blur-xl transition-all duration-200" />
+                  <span className="relative">Zyn Team</span>
                 </span>
               </div>
             </motion.div>

@@ -1,8 +1,8 @@
 export const LINKS = {
-  DISCORD: "https://discord.gg/hyperboosts",
+  DISCORD: "https://discord.gg/zynshop",
   TELEGRAM: "https://t.me/",
   TWITTER: "https://x.com",
-  TRUSTPILOT: "https://hyperboostss.mysellix.io/feedback",
+  TRUSTPILOT: "https://zynshop.mysellix.io/feedback",
 };
 
 export const NOTIFICATION = {

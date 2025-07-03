@@ -15,8 +15,8 @@ const Header = () => {
       <div className="middle h-[60px] flex items-center justify-between">
         <Link href="/">
           <div className="flex flex-row items-center gap-1">
-            <Image src="/logo.png" alt="Robolox" width={40} height={40} />
-            <span className="text-xl font-bold PoseidonFont">Hyper Boosts</span>
+            <Image src="/logo.png" alt="Zyn Shop" width={40} height={40} />
+            <span className="text-xl font-bold PoseidonFont">Zyn Shop</span>
           </div>
         </Link>
         <div className="hidden md:flex flex-row items-center gap-2">
@@ -33,7 +33,7 @@ const Header = () => {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background =
-                      'linear-gradient(90deg, rgb(168, 85, 247) 0%, rgb(236, 72, 153) 100%)';
+                      'linear-gradient(90deg, rgb(244, 173, 251) 0%, rgb(91, 40, 115) 100%)';
                     e.currentTarget.style.color = 'white';
                   }}
                   onMouseLeave={(e) => {
@@ -51,7 +51,7 @@ const Header = () => {
           <Button
             variant={"brand"}
             style={{
-              background: 'linear-gradient(90deg, rgb(168, 85, 247) 0%, rgb(236, 72, 153) 100%)',
+              background: 'linear-gradient(90deg, rgb(244, 173, 251) 0%, rgb(91, 40, 115) 100%)',
               color: 'white',
               transition: 'background 0.3s ease, color 0.3s ease',
               padding: '0.375rem 0.875rem',
@@ -59,11 +59,11 @@ const Header = () => {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background =
-                'linear-gradient(90deg, rgb(168, 85, 247) 0%, rgb(236, 72, 153) 100%)';
+                'linear-gradient(90deg, rgb(244, 173, 251) 0%, rgb(91, 40, 115) 100%)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background =
-                'linear-gradient(90deg, rgb(168, 85, 247) 0%, rgb(236, 72, 153) 100%)';
+                'linear-gradient(90deg, rgb(244, 173, 251) 0%, rgb(91, 40, 115) 100%)';
             }}
           >
             <DiscordIcon className="text-white h-[18px] w-[18px]" />

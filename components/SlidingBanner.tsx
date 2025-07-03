@@ -3,13 +3,13 @@
 import React, { useRef } from 'react';
 
 function SlidingBanner() {
-  const bannerText = "Hyper Boosts | #1 Wallet Friendly Boosting Service";
+  const bannerText = "Zyn Shop | #1 Wallet Friendly Boosting Service";
   
   return (
     <section 
       className="w-full overflow-hidden relative" 
       style={{
-        background: 'linear-gradient(90deg, #ff69b4, #9333ea, #ff69b4)',
+        background: 'linear-gradient(90deg, #f4adfb, #5b2873, #f4adfb)',
         backgroundSize: '200% 100%',
         animation: 'gradientMove 15s linear infinite'
       }}

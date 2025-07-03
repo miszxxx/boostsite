@@ -13,12 +13,12 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const res = await fetch(
-          `https://dev.sellix.io/v1/groups?timestamp=${Date.now()}`,
+          `https://sell.app/api/v2/groups?timestamp=${Date.now()}`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_SELLIX_API_KEY}`,
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_SELLAPP_API_KEY}`,
             },
           }
         );
@@ -41,21 +41,21 @@ const Products = () => {
     <section id="products" className="relative pt-24 flex flex-col items-center px-4 middle overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-purple-500/10 blur-[100px]" />
-        <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-pink-500/10 blur-[100px]" />
+        <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-[#f4adfb]/10 blur-[100px]" />
+        <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-[#5b2873]/10 blur-[100px]" />
       </div>
 
       <div className="container relative mx-auto px-4">
         <RevealAnimation>
           <div className="mb-16 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/5 px-4 py-2 backdrop-blur-sm">
-              <ShoppingBag className="h-4 w-4 text-purple-500" />
-              <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-lg font-medium text-transparent">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-[#f4adfb]/5 px-4 py-2 backdrop-blur-sm">
+              <ShoppingBag className="h-4 w-4 text-[#f4adfb]" />
+              <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-lg font-medium text-transparent">
                 Explore Our Products
               </span>
             </div>
             <h2 className="mt-6 text-4xl font-bold tracking-tight">
-              <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-transparent">
                 Premium Services
               </span>
             </h2>
@@ -72,12 +72,14 @@ const Products = () => {
           </div>
         </RevealAnimation>
 
-        <div className="absolute -top-10 left-0 w-20 h-20 border-t-2 border-l-2 border-purple-500/20 rounded-tl-3xl" />
-        <div className="absolute -bottom-10 right-0 w-20 h-20 border-b-2 border-r-2 border-pink-500/20 rounded-br-3xl" />
+        <div className="absolute -top-10 left-0 w-20 h-20 border-t-2 border-l-2 border-[#f4adfb]/20 rounded-tl-3xl" />
+        <div className="absolute -bottom-10 right-0 w-20 h-20 border-b-2 border-r-2 border-[#5b2873]/20 rounded-br-3xl" />
       </div>
 
+      <link href="https://cdn.sell.app/embed/style.css" rel="stylesheet" />
       <Script 
-        src="https://cdn.sellix.io/static/js/embed.js" 
+        src="https://cdn.sell.app/embed/script.js" 
+        type="module"
         strategy="beforeInteractive"
       />
     </section>

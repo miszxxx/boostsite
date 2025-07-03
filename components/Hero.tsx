@@ -37,8 +37,8 @@ const Hero = () => {
     <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-b from-background to-background/95">
       {/* Background Elements */}
       <div className={`absolute inset-0 ${fadeUpClass} ${visible}`}>
-        <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-purple-500/10 blur-[100px]" />
-        <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-purple-500/10 blur-[100px]" />
+        <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-[#f4adfb]/10 blur-[100px]" />
+        <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-[#5b2873]/10 blur-[100px]" />
       </div>
 
       {/* Main Content */}
@@ -49,9 +49,9 @@ const Hero = () => {
             <div className="relative z-10 flex flex-col items-center space-y-8 text-center lg:items-start lg:text-left">
               {/* Premium Badge */}
               <div className={`relative ${fadeUpClass} ${visible} ${delays.badge}`}>
-                <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-gradient-to-r from-purple-500/[0.05] to-pink-500/[0.05] px-6 py-3 backdrop-blur-sm">
-                  <Sparkles className="h-5 w-5 text-purple-400" />
-                  <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-lg font-medium text-transparent">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] px-6 py-3 backdrop-blur-sm">
+                  <Sparkles className="h-5 w-5 text-[#f4adfb]" />
+                  <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-lg font-medium text-transparent">
                     Premium Discord Services
                   </span>
                   <div className="absolute -right-6 -top-2 h-14 w-14">
@@ -69,7 +69,7 @@ const Hero = () => {
                 <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
                   <span className="block">Automate Your</span>
                   <span className="relative">
-                    <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-transparent">
                       Discord Server Boosts
                     </span>
                   </span>
@@ -95,7 +95,7 @@ const Hero = () => {
                     className={`flex items-center gap-2 ${fadeUpClass} ${visible}`}
                     style={{ transitionDelay: `${700 + (index * 100)}ms` }}
                   >
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-[#f4adfb]/10 to-[#5b2873]/10">
                       <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
@@ -110,7 +110,7 @@ const Hero = () => {
                 <Link href="/#products">
                   <Button 
                     size="lg"
-                    className="group relative w-44 overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                    className="group relative w-44 overflow-hidden bg-gradient-to-r from-[#f4adfb] to-[#5b2873] text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#f4adfb]/25"
                   >
                     Start Boosting
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -121,7 +121,7 @@ const Hero = () => {
                   <Button 
                     variant="outline" 
                     size="lg"
-                    className="w-44 border-purple-500/20 bg-gradient-to-r from-purple-500/[0.05] to-pink-500/[0.05] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-purple-500/30 hover:from-purple-500/10 hover:to-pink-500/10"
+                    className="w-44 border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#f4adfb]/30 hover:from-[#f4adfb]/10 hover:to-[#5b2873]/10"
                   >
                     <DiscordLogoIcon className="mr-2 h-5 w-5 text-white" />
                     Join Discord
@@ -138,7 +138,7 @@ const Hero = () => {
                 ].map((stat, index) => (
                   <div 
                     key={stat.label} 
-                    className="rounded-lg border border-purple-500/20 bg-gradient-to-r from-purple-500/[0.05] to-pink-500/[0.05] p-4 text-center backdrop-blur-sm transition-all duration-300 hover:border-purple-500/30"
+                    className="rounded-lg border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] p-4 text-center backdrop-blur-sm transition-all duration-300 hover:border-[#f4adfb]/30"
                     style={{ transitionDelay: `${1000 + (index * 100)}ms` }}
                   >
                     <div className="text-2xl font-bold">{stat.value}</div>
@@ -151,7 +151,7 @@ const Hero = () => {
             {/* Right Column - Visual Elements */}
             <div className={`relative hidden lg:block ${fadeUpClass} ${visible} ${delays.image}`}>
               <div className="relative">
-                <div className="absolute left-1/2 top-1/2 h-[600px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-b from-purple-500/20 via-pink-500/20 to-purple-500/20 blur-3xl" />
+                <div className="absolute left-1/2 top-1/2 h-[600px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-b from-[#f4adfb]/20 via-[#5b2873]/20 to-[#f4adfb]/20 blur-3xl" />
                 
                 <Image
                   className="relative mx-auto h-auto w-[80%] max-w-[500px] drop-shadow-2xl"
