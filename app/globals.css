@@ -31,7 +31,7 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 }
 
@@ -41,11 +41,27 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
+/* Enhanced scrollbar styling */
 body::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(244, 173, 251, 0.05);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f4adfb, #5b2873);
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #f4adfb, #5b2873);
+  opacity: 0.8;
 }
 
 html,
@@ -67,4 +83,128 @@ body {
 
 .flip_horizontal {
   transform: scaleX(-1);
+}
+
+/* Enhanced gradient animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-animate {
+  background: linear-gradient(-45deg, #f4adfb, #5b2873, #f4adfb, #5b2873);
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Enhanced hover effects */
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(244, 173, 251, 0.3);
+}
+
+/* Text selection styling */
+::selection {
+  background: rgba(244, 173, 251, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(244, 173, 251, 0.3);
+  color: white;
+}
+
+/* Enhanced focus styles */
+.focus-visible:focus-visible {
+  outline: 2px solid #f4adfb;
+  outline-offset: 2px;
+}
+
+/* Loading animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Enhanced card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(244, 173, 251, 0.15);
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, input, select, textarea {
+  transition: all 0.2s ease;
+}
+
+/* Enhanced gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #f4adfb 0%, #5b2873 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(244, 173, 251, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(244, 173, 251, 0.1);
+}
+
+/* Enhanced button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #f4adfb 0%, #5b2873 100%);
+  border: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(244, 173, 251, 0.3);
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
