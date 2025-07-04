@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Shield, Coins } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from './ui/button';
@@ -35,10 +35,11 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-b from-background to-background/95">
-      {/* Background Elements */}
+      {/* Enhanced Background Elements */}
       <div className={`absolute inset-0 ${fadeUpClass} ${visible}`}>
-        <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-[#f4adfb]/10 blur-[100px]" />
-        <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-[#5b2873]/10 blur-[100px]" />
+        <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-[#f4adfb]/10 blur-[100px] animate-pulse" />
+        <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-[#5b2873]/10 blur-[100px] animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-gradient-to-r from-[#f4adfb]/5 to-[#5b2873]/5 blur-[150px]" />
       </div>
 
       {/* Main Content */}
@@ -52,7 +53,7 @@ const Hero = () => {
                 <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] px-6 py-3 backdrop-blur-sm">
                   <Sparkles className="h-5 w-5 text-[#f4adfb]" />
                   <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-lg font-medium text-transparent">
-                    Premium Discord Services
+                    Premium Discord Tools & Nitro
                   </span>
                   <div className="absolute -right-6 -top-2 h-14 w-14">
                     <Lottie 
@@ -67,40 +68,37 @@ const Hero = () => {
               {/* Main Heading Group */}
               <div className={`relative space-y-6 ${fadeUpClass} ${visible} ${delays.heading}`}>
                 <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-                  <span className="block">Automate Your</span>
+                  <span className="block">Premium Discord</span>
                   <span className="relative">
                     <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-transparent">
-                      Discord Server Boosts
+                      Tools & Nitro Services
                     </span>
                   </span>
-                  <span className="block mt-1">at Discounted Rates!</span>
+                  <span className="block mt-1">Crypto Payments Only!</span>
                 </h1>
                 
                 <p className={`mx-auto max-w-xl text-lg text-muted-foreground/90 lg:mx-0 ${fadeUpClass} ${visible} ${delays.description}`}>
-                  Experience lightning-fast delivery and unbeatable prices for Discord 
-                  enhancement services. Our automated platform ensures instant delivery 
-                  with 24/7 customer support.
+                  Get premium Discord tools, Nitro subscriptions, and enhancement services. 
+                  Lightning-fast delivery with secure cryptocurrency payments and 24/7 support.
                 </p>
               </div>
 
               {/* Features List */}
               <div className={`flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground/90 lg:justify-start ${fadeUpClass} ${visible} ${delays.features}`}>
                 {[
-                  'Instant Delivery',
-                  '24/7 Support',
-                  'Lowest Price Guarantee'
+                  { icon: Zap, text: 'Instant Delivery' },
+                  { icon: Shield, text: '24/7 Support' },
+                  { icon: Coins, text: 'Crypto Only' }
                 ].map((feature, index) => (
                   <div 
-                    key={feature} 
+                    key={feature.text} 
                     className={`flex items-center gap-2 ${fadeUpClass} ${visible}`}
                     style={{ transitionDelay: `${700 + (index * 100)}ms` }}
                   >
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-[#f4adfb]/10 to-[#5b2873]/10">
-                      <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[#f4adfb]/10 to-[#5b2873]/10 border border-[#f4adfb]/20">
+                      <feature.icon className="h-4 w-4 text-[#f4adfb]" />
                     </div>
-                    <span>{feature}</span>
+                    <span className="font-medium">{feature.text}</span>
                   </div>
                 ))}
               </div>
@@ -110,9 +108,9 @@ const Hero = () => {
                 <Link href="/#products">
                   <Button 
                     size="lg"
-                    className="group relative w-44 overflow-hidden bg-gradient-to-r from-[#f4adfb] to-[#5b2873] text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#f4adfb]/25"
+                    className="group relative w-48 overflow-hidden bg-gradient-to-r from-[#f4adfb] to-[#5b2873] text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#f4adfb]/25"
                   >
-                    Start Boosting
+                    Browse Services
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
@@ -121,7 +119,7 @@ const Hero = () => {
                   <Button 
                     variant="outline" 
                     size="lg"
-                    className="w-44 border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#f4adfb]/30 hover:from-[#f4adfb]/10 hover:to-[#5b2873]/10"
+                    className="w-48 border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#f4adfb]/30 hover:from-[#f4adfb]/10 hover:to-[#5b2873]/10"
                   >
                     <DiscordLogoIcon className="mr-2 h-5 w-5 text-white" />
                     Join Discord
@@ -129,19 +127,19 @@ const Hero = () => {
                 </Link>
               </div>
 
-              {/* Stats */}
+              {/* Enhanced Stats */}
               <div className={`grid w-full grid-cols-3 gap-4 ${fadeUpClass} ${visible} ${delays.stats}`}>
                 {[
-                  { label: 'Active Users', value: '10K+' },
-                  { label: 'Servers Boosted', value: '5K+' },
-                  { label: 'Response Time', value: '<1m' },
+                  { label: 'Tools Sold', value: '15K+' },
+                  { label: 'Nitro Delivered', value: '8K+' },
+                  { label: 'Response Time', value: '<30s' },
                 ].map((stat, index) => (
                   <div 
                     key={stat.label} 
-                    className="rounded-lg border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] p-4 text-center backdrop-blur-sm transition-all duration-300 hover:border-[#f4adfb]/30"
+                    className="rounded-xl border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] p-4 text-center backdrop-blur-sm transition-all duration-300 hover:border-[#f4adfb]/30 hover:shadow-lg hover:shadow-[#f4adfb]/10"
                     style={{ transitionDelay: `${1000 + (index * 100)}ms` }}
                   >
-                    <div className="text-2xl font-bold">{stat.value}</div>
+                    <div className="text-2xl font-bold bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-transparent">{stat.value}</div>
                     <div className="text-sm text-muted-foreground/90">{stat.label}</div>
                   </div>
                 ))}
@@ -151,10 +149,10 @@ const Hero = () => {
             {/* Right Column - Visual Elements */}
             <div className={`relative hidden lg:block ${fadeUpClass} ${visible} ${delays.image}`}>
               <div className="relative">
-                <div className="absolute left-1/2 top-1/2 h-[600px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-b from-[#f4adfb]/20 via-[#5b2873]/20 to-[#f4adfb]/20 blur-3xl" />
+                <div className="absolute left-1/2 top-1/2 h-[600px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-b from-[#f4adfb]/20 via-[#5b2873]/20 to-[#f4adfb]/20 blur-3xl animate-pulse" />
                 
                 <Image
-                  className="relative mx-auto h-auto w-[80%] max-w-[500px] drop-shadow-2xl"
+                  className="relative mx-auto h-auto w-[80%] max-w-[500px] drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                   alt="Discord mobile interface"
                   src="/PNG/phone.png"
                   width={1250}

@@ -2,13 +2,13 @@
 
 import { cn } from "@/lib/utils";
 import {
-  HandCoinsIcon,
-  GemIcon,
-  BookCheckIcon,
-  ScaleIcon,
+  Coins,
+  Zap,
+  Shield,
+  Clock,
   MessageCircleMoreIcon,
-  SunMoonIcon,
   WorkflowIcon,
+  CrownIcon,
 } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
@@ -27,40 +27,40 @@ interface FeatureCardProps {
 
 const FeaturesData: Feature[] = [
   {
-    icon: <HandCoinsIcon size={30} className="text-[#f4adfb]" />,
-    title: "Seamless Payment",
+    icon: <Coins size={30} className="text-[#f4adfb]" />,
+    title: "Cryptocurrency Only",
     description:
-      "Ordering from us is a breeze. We accept all major cryptocurrencies, Cash App, PayPal, Venmo, cards, and gift cards for your convenience.",
+      "We exclusively accept Bitcoin, Ethereum, Litecoin, and other major cryptocurrencies for maximum security and privacy protection.",
   },
   {
-    icon: <GemIcon size={30} className="text-[#5b2873]" />,
-    title: "Cheap Prices",
+    icon: <CrownIcon size={30} className="text-[#5b2873]" />,
+    title: "Premium Discord Tools",
     description:
-      "Our ultimate motto is to ensure that everyone, regardless of their location, can access high-quality services at an affordable price.",
+      "Access the best Discord tools, utilities, and enhancement services to supercharge your Discord experience and server management.",
   },
   {
-    icon: <BookCheckIcon size={30} className="text-[#f4adfb]" />,
-    title: "Trusted & Reputated Seller",
+    icon: <Zap size={30} className="text-[#f4adfb]" />,
+    title: "Discord Nitro Services",
     description:
-      "Our customers consistently provide positive feedback, praising not only our top-tier services but also our premium support.",
+      "Get Discord Nitro subscriptions and premium features at competitive prices with instant delivery and full warranty coverage.",
   },
   {
-    icon: <ScaleIcon size={30} className="text-[#f4adfb]" />,
-    title: "Legal Methods",
+    icon: <Shield size={30} className="text-[#f4adfb]" />,
+    title: "Secure & Anonymous",
     description:
-      "Rest assured, every service we offer is acquired through entirely legal channels, ensuring you peace of mind without concerns about reversals.",
+      "All transactions are processed securely through cryptocurrency payments, ensuring your privacy and financial security at all times.",
   },
   {
     icon: <MessageCircleMoreIcon size={30} className="text-[#5b2873]" />,
-    title: "24/7 Support",
+    title: "24/7 Expert Support",
     description:
-      "Our unmatched chat support is available 24/7, ready to address any questions or concerns you may have, every single day.",
+      "Our dedicated support team is available around the clock to assist with any questions, issues, or technical support you may need.",
   },
   {
     icon: <WorkflowIcon size={30} className="text-[#f4adfb]" />,
-    title: "Automatic Delivery",
+    title: "Instant Automated Delivery",
     description:
-      "Your order will be delivered in just around 30 seconds after placement, thanks to our ultra-fast automatic delivery system.",
+      "Your orders are processed and delivered automatically within seconds of payment confirmation through our advanced delivery system.",
   },
 ];
 
@@ -68,31 +68,31 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
   return (
     <RevealAnimation>
       <motion.div
-        whileHover={{ scale: 1.02 }}
+        whileHover={{ scale: 1.02, y: -5 }}
         className={cn(
-          "relative group flex flex-col items-start p-8 rounded-lg",
-          "bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05]",
-          "border border-[#f4adfb]/20 hover:border-[#f4adfb]/30",
-          "backdrop-blur-sm transition-all"
+          "relative group flex flex-col items-start p-8 rounded-xl",
+          "bg-gradient-to-br from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05]",
+          "border border-[#f4adfb]/20 hover:border-[#f4adfb]/40",
+          "backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-[#f4adfb]/10"
         )}
       >
-        {/* Background gradient effect */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f4adfb] via-[#5b2873] to-[#f4adfb]" />
+        {/* Enhanced background gradient effect */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-xl">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#f4adfb] via-[#5b2873] to-[#f4adfb]" />
         </div>
 
-        {/* Icon container */}
-        <div className="relative p-4 rounded-xl bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] border border-[#f4adfb]/20 group-hover:border-[#f4adfb]/30">
+        {/* Enhanced icon container */}
+        <div className="relative p-4 rounded-xl bg-gradient-to-br from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] border border-[#f4adfb]/20 group-hover:border-[#f4adfb]/40 group-hover:scale-110 transition-all duration-300">
           {feature.icon}
         </div>
 
-        {/* Title with gradient effect on hover */}
-        <h3 className="mt-4 text-lg font-semibold group-hover:bg-gradient-to-r group-hover:from-[#f4adfb] group-hover:via-[#5b2873] group-hover:to-[#f4adfb] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+        {/* Enhanced title with gradient effect on hover */}
+        <h3 className="mt-6 text-xl font-semibold group-hover:bg-gradient-to-r group-hover:from-[#f4adfb] group-hover:via-[#5b2873] group-hover:to-[#f4adfb] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 text-white">
           {feature.title}
         </h3>
 
-        {/* Description */}
-        <p className="mt-2 text-sm text-muted-foreground/90">
+        {/* Enhanced description */}
+        <p className="mt-3 text-sm text-muted-foreground/90 leading-relaxed group-hover:text-white/80 transition-colors duration-300">
           {feature.description}
         </p>
       </motion.div>
@@ -103,19 +103,20 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
 const Features: React.FC = () => {
   return (
     <div id="features" className="relative px-4 py-20">
-      {/* Background Elements */}
+      {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-[#f4adfb]/10 blur-[100px]" />
-        <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-[#5b2873]/10 blur-[100px]" />
+        <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-[#f4adfb]/10 blur-[100px] animate-pulse" />
+        <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-[#5b2873]/10 blur-[100px] animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-gradient-to-r from-[#f4adfb]/5 to-[#5b2873]/5 blur-[150px]" />
       </div>
 
       <div className="relative container mx-auto">
         <div className="flex items-center flex-col text-center mb-16">
           <RevealAnimation screenReveal>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] px-6 py-3 backdrop-blur-sm">
-              <SunMoonIcon size={16} className="text-[#f4adfb]" />
+              <Zap size={16} className="text-[#f4adfb]" />
               <span className="bg-gradient-to-r from-[#f4adfb] via-[#5b2873] to-[#f4adfb] bg-clip-text text-transparent font-semibold">
-                We Have Exciting Features
+                Why Choose Zyn Shop
               </span>
             </div>
           </RevealAnimation>
@@ -127,9 +128,16 @@ const Features: React.FC = () => {
               </span>
             </h2>
           </RevealAnimation>
+
+          <RevealAnimation screenReveal delay={0.4}>
+            <p className="mt-4 text-white/70 max-w-2xl mx-auto leading-relaxed">
+              Experience the best Discord tools and Nitro services with secure cryptocurrency payments, 
+              instant delivery, and professional support.
+            </p>
+          </RevealAnimation>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {FeaturesData.map((feature, index) => (
             <FeatureCard
               key={index}

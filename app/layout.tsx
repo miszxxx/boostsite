@@ -8,11 +8,23 @@ const OutfitFont = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Zyn Shop | #1 Discord Shop",
+  title: "Zyn Shop | Premium Discord Tools & Nitro Services",
   description:
-    "Zyn Shop is a Discord shop that sells high-quality Discord boosts, tools, and more. We offer a wide range of services to help you grow your community. Zyn Shop is not affiliated or endorsed by Discord in any way.",
+    "Zyn Shop offers premium Discord tools, Nitro subscriptions, and enhancement services. Secure cryptocurrency payments only. Fast delivery, 24/7 support, and professional service.",
+  keywords: "Discord tools, Discord Nitro, cryptocurrency payments, Bitcoin, Ethereum, Discord services, premium tools",
   icons: {
     icon: "logo.png",
+  },
+  openGraph: {
+    title: "Zyn Shop | Premium Discord Tools & Nitro Services",
+    description: "Premium Discord tools and Nitro services with secure cryptocurrency payments",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zyn Shop | Premium Discord Tools & Nitro Services",
+    description: "Premium Discord tools and Nitro services with secure cryptocurrency payments",
   },
 };
 
