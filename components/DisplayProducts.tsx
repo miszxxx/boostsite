@@ -42,36 +42,62 @@ const DisplayProducts = ({ products }: { products: any }) => {
     if (product.description) {
       // Extract features from description
       const descriptionText = product.description.replace(/<[^>]*>/g, ''); // Remove HTML tags
-      features = descriptionText.split('\n').filter(line => line.trim()).slice(0, 3);
+      const lines = descriptionText.split('\n').filter(line => line.trim());
+      
+      // Look for bullet points or numbered lists
+      const featureLines = lines.filter(line => 
+        line.includes('•') || 
+        line.includes('-') || 
+        line.includes('✓') || 
+        line.includes('✔') ||
+        /^\d+\./.test(line.trim()) ||
+        line.toLowerCase().includes('feature') ||
+        line.toLowerCase().includes('include')
+      );
+      
+      if (featureLines.length > 0) {
+        features = featureLines.slice(0, 4).map(line => 
+          line.replace(/[•\-✓✔]/g, '').replace(/^\d+\./, '').trim()
+        );
+      } else {
+        // Fallback to first few sentences
+        features = lines.slice(0, 3);
+      }
     }
     
     if (features.length === 0) {
       features = [
         "High Quality Service",
         "Fast Delivery",
-        "24/7 Support"
+        "24/7 Support",
+        "Secure Payment"
       ];
     }
     
-    return features;
+    return features.slice(0, 4); // Limit to 4 features
   };
 
   const setProductsInAscendingOrder = (products: SellAppProduct[]) => {
     return products.sort((a, b) => {
-      const priceA = a.default_price ? parseFloat(a.default_price.price) : 0;
-      const priceB = b.default_price ? parseFloat(b.default_price.price) : 0;
+      const priceA = getProductPriceNumber(a);
+      const priceB = getProductPriceNumber(b);
       return priceA - priceB;
     });
   };
 
-  const getProductPrice = (product: SellAppProduct) => {
+  const getProductPriceNumber = (product: SellAppProduct): number => {
     if (product.default_price) {
-      return `$${product.default_price.price}`;
+      return parseFloat(product.default_price.price);
     }
     if (product.variants && product.variants.length > 0) {
-      return `$${product.variants[0].price}`;
+      return product.variants[0].price;
     }
-    return "Contact for Price";
+    return 0;
+  };
+
+  const getProductPrice = (product: SellAppProduct) => {
+    const price = getProductPriceNumber(product);
+    return price > 0 ? `$${price.toFixed(2)}` : "Contact for Price";
   };
 
   const getProductStock = (product: SellAppProduct) => {
@@ -81,7 +107,7 @@ const DisplayProducts = ({ products }: { products: any }) => {
     return -1; // Infinite stock
   };
 
-  if (!products?.data) {
+  if (!products || !Array.isArray(products)) {
     return (
       <div className="px-4 mt-10 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] px-6 py-3 backdrop-blur-sm">
@@ -94,7 +120,7 @@ const DisplayProducts = ({ products }: { products: any }) => {
     );
   }
 
-  const productGroups = products.data;
+  const productGroups = products;
 
   if (!productGroups || productGroups.length === 0) {
     return (

@@ -6,7 +6,8 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const timestamp = searchParams.get('timestamp');
 
-    const result = await sellAppAPI.getGroups(timestamp || undefined);
+    // Use the enhanced method to get groups with products
+    const result = await sellAppAPI.getGroupsWithProducts();
 
     return NextResponse.json(result.data, {
       headers: {
@@ -14,12 +15,17 @@ export async function GET(request: NextRequest) {
           ? 'public, s-maxage=3600, stale-while-revalidate=86400' // Longer cache for cached data
           : 'public, s-maxage=300, stale-while-revalidate=600',   // Shorter cache for fresh data
         'X-Data-Source': result.cached ? 'cache' : 'api',
+        'X-Timestamp': new Date().toISOString(),
       },
     });
   } catch (error) {
     console.error('Error in products API:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch products', details: error instanceof Error ? error.message : 'Unknown error' },
+      { 
+        error: 'Failed to fetch products', 
+        details: error instanceof Error ? error.message : 'Unknown error',
+        timestamp: new Date().toISOString(),
+      },
       { status: 500 }
     );
   }

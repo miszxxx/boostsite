@@ -115,6 +115,42 @@ class SellAppAPI {
     const cacheKey = 'all_products';
     return this.makeRequest('/products', cacheKey);
   }
+
+  // Enhanced method to get groups with products and proper pricing
+  async getGroupsWithProducts() {
+    try {
+      const groupsResult = await this.getGroups();
+      const groups = groupsResult.data;
+
+      // Fetch products for each group
+      const groupsWithProducts = await Promise.all(
+        groups.map(async (group: any) => {
+          try {
+            const productsResult = await this.getGroupProducts(group.id.toString());
+            return {
+              ...group,
+              products: productsResult.data.data || [], // Handle pagination structure
+            };
+          } catch (error) {
+            console.error(`Error fetching products for group ${group.id}:`, error);
+            return {
+              ...group,
+              products: [],
+            };
+          }
+        })
+      );
+
+      return {
+        data: groupsWithProducts,
+        success: true,
+        cached: groupsResult.cached,
+      };
+    } catch (error) {
+      console.error('Error in getGroupsWithProducts:', error);
+      throw error;
+    }
+  }
 }
 
 export const sellAppAPI = new SellAppAPI();

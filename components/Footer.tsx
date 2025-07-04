@@ -109,44 +109,6 @@ const ScrollToTop: React.FC = () => {
   ) : null;
 };
 
-const NewsletterForm: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-  };
-  
-  return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <div className="relative">
-        <input
-          type="email"
-          value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-          className="w-full px-4 py-3 rounded-lg bg-gradient-to-r from-[#f4adfb]/5 to-[#5b2873]/5 border border-[#f4adfb]/20 focus:border-[#f4adfb] focus:outline-none transition-colors duration-200 text-sm backdrop-blur-sm"
-        />
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.98 }}
-          className="absolute right-1 top-1"
-        >
-          <Button 
-            type="submit" 
-            className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] hover:from-[#f4adfb] hover:to-[#5b2873] text-white px-6 py-2 rounded-md transition-all duration-200 shadow-lg hover:shadow-[#f4adfb]/25"
-          >
-            <span className="flex items-center gap-2">
-              Subscribe
-              <ChevronRight className="w-4 h-4" />
-            </span>
-          </Button>
-        </motion.div>
-      </div>
-    </form>
-  );
-};
-
 const Footer: React.FC = () => {
   return (
     <motion.footer 
@@ -199,11 +161,6 @@ const Footer: React.FC = () => {
               <p className="text-xs text-white/70">
                 Bitcoin, Ethereum, Litecoin, and other major cryptocurrencies accepted.
               </p>
-            </div>
-
-            <div className="mt-4">
-              <h3 className="text-lg font-semibold mb-3 text-white">Stay Updated</h3>
-              <NewsletterForm />
             </div>
 
             <div className="flex flex-wrap gap-3 items-center">

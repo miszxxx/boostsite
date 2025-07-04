@@ -13,7 +13,7 @@ interface ProductPageProps {
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   try {
     // Get all products to find the one with matching slug
-    const groupsResult = await sellAppAPI.getGroups();
+    const groupsResult = await sellAppAPI.getGroupsWithProducts();
     let product = null;
 
     // Search through all groups to find the product
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     // Clean description for meta
     const cleanDescription = product.description
       ? product.description.replace(/<[^>]*>/g, '').substring(0, 160)
-      : 'High-quality Discord services from Zyn Shop';
+      : 'High-quality Discord tools and Nitro services from Zyn Shop';
 
     return {
       title: `${product.title} | Zyn Shop`,
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     console.error('Error generating metadata:', error);
     return {
       title: 'Product | Zyn Shop',
-      description: 'High-quality Discord services from Zyn Shop',
+      description: 'High-quality Discord tools and Nitro services from Zyn Shop',
     };
   }
 }
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 export default async function ProductPageRoute({ params }: ProductPageProps) {
   try {
     // Get all products to find the one with matching slug
-    const groupsResult = await sellAppAPI.getGroups();
+    const groupsResult = await sellAppAPI.getGroupsWithProducts();
     let product = null;
     let groupInfo = null;
 
@@ -109,7 +109,7 @@ export default async function ProductPageRoute({ params }: ProductPageProps) {
 // Generate static paths for better performance
 export async function generateStaticParams() {
   try {
-    const groupsResult = await sellAppAPI.getGroups();
+    const groupsResult = await sellAppAPI.getGroupsWithProducts();
     const slugs: string[] = [];
 
     // Collect all product slugs
