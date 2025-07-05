@@ -10,25 +10,50 @@ const Products = () => {
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const fetchProducts = async () => {
       try {
         setLoading(true);
         setError(null);
         
         const data = await api.getGroups(Date.now().toString());
-        setProductsData(data);
+        setProductsData(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching products:", error);
         setError("Failed to load products. Please try again later.");
+        setProductsData([]);
       } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) {
+    return (
+      <section id="products" className="relative pt-24 flex flex-col items-center px-4 middle overflow-hidden">
+        <div className="container relative mx-auto px-4">
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] px-6 py-3 backdrop-blur-sm">
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#f4adfb] border-t-transparent"></div>
+              <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-lg font-medium text-transparent">
+                Loading Products...
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (loading) {
     return (

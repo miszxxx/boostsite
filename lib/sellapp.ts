@@ -6,10 +6,13 @@ interface SellAppResponse<T> {
   data: T;
   success: boolean;
   cached?: boolean;
+  rateLimited?: boolean;
 }
 
 class SellAppAPI {
   private apiKey: string;
+  private rateLimitCount: number = 0;
+  private lastRateLimitTime: number = 0;
 
   constructor() {
     if (!process.env.SELLAPP_API_KEY) {
@@ -18,10 +21,44 @@ class SellAppAPI {
     this.apiKey = process.env.SELLAPP_API_KEY;
   }
 
+  private isRateLimited(): boolean {
+    const now = Date.now();
+    // Reset rate limit count every hour
+    if (now - this.lastRateLimitTime > 3600000) {
+      this.rateLimitCount = 0;
+    }
+    return this.rateLimitCount >= 5; // Assume rate limit after 5 failures
+  }
+
   private async makeRequest<T>(endpoint: string, cacheKey?: string): Promise<SellAppResponse<T>> {
     try {
-      // Try to get cached data first
-      if (cacheKey) {
+      // If we're rate limited, only use cache
+      if (this.isRateLimited() && cacheKey) {
+        console.log('Rate limited, using cache only');
+        const cachedData = await getCachedData('sellapp_cache', cacheKey);
+        if (cachedData) {
+          return {
+            data: cachedData,
+            success: true,
+            cached: true,
+            rateLimited: true,
+          };
+        }
+        
+        // Try stale cache if no fresh cache
+        const staleData = await getCachedData('sellapp_stale', cacheKey);
+        if (staleData) {
+          return {
+            data: staleData,
+            success: true,
+            cached: true,
+            rateLimited: true,
+          };
+        }
+      }
+
+      // Try fresh cache first (only if not rate limited)
+      if (cacheKey && !this.isRateLimited()) {
         const cachedData = await getCachedData('sellapp_cache', cacheKey);
         if (cachedData) {
           return {
@@ -32,44 +69,62 @@ class SellAppAPI {
         }
       }
 
-      // Make API request
-      const response = await fetch(`${SELLAPP_BASE_URL}${endpoint}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.apiKey}`,
-        },
-      });
+      // Make API request only if not rate limited
+      if (!this.isRateLimited()) {
+        const response = await fetch(`${SELLAPP_BASE_URL}${endpoint}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.apiKey}`,
+          },
+        });
 
-      if (!response.ok) {
-        // If API fails, try to return stale cache data
-        if (cacheKey) {
-          const staleData = await getCachedData('sellapp_stale', cacheKey);
-          if (staleData) {
-            console.warn(`API failed, returning stale data for ${cacheKey}`);
-            return {
-              data: staleData,
-              success: true,
-              cached: true,
-            };
+        if (response.status === 429) {
+          // Rate limited
+          this.rateLimitCount++;
+          this.lastRateLimitTime = Date.now();
+          
+          // Try to return cached data
+          if (cacheKey) {
+            const cachedData = await getCachedData('sellapp_cache', cacheKey) || 
+                              await getCachedData('sellapp_stale', cacheKey);
+            if (cachedData) {
+              return {
+                data: cachedData,
+                success: true,
+                cached: true,
+                rateLimited: true,
+              };
+            }
           }
+          throw new Error('Rate limited and no cache available');
         }
-        throw new Error(`API request failed: ${response.statusText}`);
+
+        if (!response.ok) {
+          throw new Error(`API request failed: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        // Cache the successful response
+        if (cacheKey) {
+          await setCachedData('sellapp_cache', cacheKey, data);
+          // Also save as stale backup
+          await setCachedData('sellapp_stale', cacheKey, data);
+        }
+
+        // Reset rate limit count on successful request
+        this.rateLimitCount = 0;
+
+        return {
+          data,
+          success: true,
+          cached: false,
+        };
       }
 
-      const data = await response.json();
-
-      // Cache the successful response
-      if (cacheKey) {
-        await setCachedData('sellapp_cache', cacheKey, data);
-        // Also save as stale backup
-        await setCachedData('sellapp_stale', cacheKey, data);
-      }
-
-      return {
-        data,
-        success: true,
-        cached: false,
-      };
+      // If rate limited and no cache, throw error
+      throw new Error('Rate limited and no cache available');
+      
     } catch (error) {
       console.error(`SellApp API Error for ${endpoint}:`, error);
       
@@ -121,6 +176,14 @@ class SellAppAPI {
     try {
       const groupsResult = await this.getGroups();
       const groups = Array.isArray(groupsResult.data) ? groupsResult.data : [];
+
+      if (groups.length === 0) {
+        return {
+          data: [],
+          success: true,
+          cached: groupsResult.cached,
+        };
+      }
 
       // Fetch products for each group
       const groupsWithProducts = await Promise.all(

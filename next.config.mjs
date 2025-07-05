@@ -25,6 +25,9 @@ const nextConfig = {
     SELLAPP_API_KEY: process.env.SELLAPP_API_KEY,
     NEXT_PUBLIC_SELLAPP_STORE_ID: process.env.NEXT_PUBLIC_SELLAPP_STORE_ID,
   },
+
+  // Disable strict mode to prevent hydration issues
+  reactStrictMode: false,
 };
 
 export default nextConfig;

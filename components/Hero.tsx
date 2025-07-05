@@ -1,42 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ArrowRight, Sparkles, Zap, Shield, Coins } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { DiscordLogoIcon } from '@radix-ui/react-icons';
 import { LINKS } from './config';
-import dynamic from 'next/dynamic';
-import DiscordNitroLottieAnimation from '@/assests/LOTTIE/discord-nitro-lottie.json';
-
-const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const fadeUpClass = "transition-all duration-700 ease-out";
-  const initialInvisible = "opacity-0 translate-y-8";
-  const visible = isVisible ? "opacity-100 translate-y-0" : initialInvisible;
-
-  const delays = {
-    badge: "delay-100",
-    heading: "delay-300",
-    description: "delay-500",
-    features: "delay-700",
-    buttons: "delay-900",
-    stats: "delay-1000",
-    image: "delay-500"
-  };
-
   return (
     <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-b from-background to-background/95">
       {/* Enhanced Background Elements */}
-      <div className={`absolute inset-0 ${fadeUpClass} ${visible}`}>
+      <div className="absolute inset-0">
         <div className="absolute top-20 left-1/4 h-96 w-96 rounded-full bg-[#f4adfb]/10 blur-[100px] animate-pulse" />
         <div className="absolute bottom-40 right-1/4 h-96 w-96 rounded-full bg-[#5b2873]/10 blur-[100px] animate-pulse" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-gradient-to-r from-[#f4adfb]/5 to-[#5b2873]/5 blur-[150px]" />
@@ -49,24 +25,17 @@ const Hero = () => {
             {/* Left Column */}
             <div className="relative z-10 flex flex-col items-center space-y-8 text-center lg:items-start lg:text-left">
               {/* Premium Badge */}
-              <div className={`relative ${fadeUpClass} ${visible} ${delays.badge}`}>
+              <div className="relative">
                 <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] px-6 py-3 backdrop-blur-sm">
                   <Sparkles className="h-5 w-5 text-[#f4adfb]" />
                   <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-lg font-medium text-transparent">
                     Premium Discord Tools & Nitro
                   </span>
-                  <div className="absolute -right-6 -top-2 h-14 w-14">
-                    <Lottie 
-                      animationData={DiscordNitroLottieAnimation} 
-                      loop={true}
-                      className="transform transition-all duration-300 hover:scale-110"
-                    />
-                  </div>
                 </div>
               </div>
 
               {/* Main Heading Group */}
-              <div className={`relative space-y-6 ${fadeUpClass} ${visible} ${delays.heading}`}>
+              <div className="relative space-y-6">
                 <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
                   <span className="block">Premium Discord</span>
                   <span className="relative">
@@ -77,14 +46,14 @@ const Hero = () => {
                   <span className="block mt-1 text-3xl sm:text-4xl text-white/90">Secure & Anonymous</span>
                 </h1>
                 
-                <p className={`mx-auto max-w-xl text-lg text-muted-foreground/90 lg:mx-0 ${fadeUpClass} ${visible} ${delays.description}`}>
+                <p className="mx-auto max-w-xl text-lg text-muted-foreground/90 lg:mx-0">
                   Get premium Discord tools, Nitro subscriptions, and enhancement services. 
                   Lightning-fast delivery with secure cryptocurrency payments and 24/7 support.
                 </p>
               </div>
 
               {/* Features List */}
-              <div className={`flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground/90 lg:justify-start ${fadeUpClass} ${visible} ${delays.features}`}>
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground/90 lg:justify-start">
                 {[
                   { icon: Zap, text: 'Instant Delivery' },
                   { icon: Shield, text: '24/7 Support' },
@@ -92,8 +61,7 @@ const Hero = () => {
                 ].map((feature, index) => (
                   <div 
                     key={feature.text} 
-                    className={`flex items-center gap-2 ${fadeUpClass} ${visible}`}
-                    style={{ transitionDelay: `${700 + (index * 100)}ms` }}
+                    className="flex items-center gap-2"
                   >
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[#f4adfb]/10 to-[#5b2873]/10 border border-[#f4adfb]/20">
                       <feature.icon className="h-4 w-4 text-[#f4adfb]" />
@@ -104,7 +72,7 @@ const Hero = () => {
               </div>
 
               {/* CTA Buttons */}
-              <div className={`flex flex-col gap-4 sm:flex-row ${fadeUpClass} ${visible} ${delays.buttons}`}>
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Link href="/#products">
                   <Button 
                     size="lg"
@@ -128,7 +96,7 @@ const Hero = () => {
               </div>
 
               {/* Enhanced Stats */}
-              <div className={`grid w-full grid-cols-3 gap-4 ${fadeUpClass} ${visible} ${delays.stats}`}>
+              <div className="grid w-full grid-cols-3 gap-4">
                 {[
                   { label: 'Tools Sold', value: '15K+' },
                   { label: 'Nitro Delivered', value: '8K+' },
@@ -137,7 +105,6 @@ const Hero = () => {
                   <div 
                     key={stat.label} 
                     className="rounded-xl border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] p-4 text-center backdrop-blur-sm transition-all duration-300 hover:border-[#f4adfb]/30 hover:shadow-lg hover:shadow-[#f4adfb]/10"
-                    style={{ transitionDelay: `${1000 + (index * 100)}ms` }}
                   >
                     <div className="text-2xl font-bold bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-transparent">{stat.value}</div>
                     <div className="text-sm text-muted-foreground/90">{stat.label}</div>
@@ -147,7 +114,7 @@ const Hero = () => {
             </div>
 
             {/* Right Column - Visual Elements */}
-            <div className={`relative hidden lg:block ${fadeUpClass} ${visible} ${delays.image}`}>
+            <div className="relative hidden lg:block">
               <div className="relative">
                 <div className="absolute left-1/2 top-1/2 h-[600px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-b from-[#f4adfb]/20 via-[#5b2873]/20 to-[#f4adfb]/20 blur-3xl animate-pulse" />
                 
