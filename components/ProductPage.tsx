@@ -277,7 +277,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, group, relatedProduc
                 <div className="p-6 rounded-xl bg-gradient-to-br from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] border border-[#f4adfb]/20">
                   <h3 className="text-lg font-semibold mb-4 text-white flex items-center gap-2">
                     <Check className="w-5 h-5 text-[#f4adfb]" />
-                    What's Included
+                    What&apos;s Included
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {features.map((feature, index) => (

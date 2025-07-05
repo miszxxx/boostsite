@@ -74,7 +74,7 @@ const Hero = () => {
                       Tools & Nitro Services
                     </span>
                   </span>
-                  <span className="block mt-1">Crypto Payments Only!</span>
+                  <span className="block mt-1 text-3xl sm:text-4xl text-white/90">Secure & Anonymous</span>
                 </h1>
                 
                 <p className={`mx-auto max-w-xl text-lg text-muted-foreground/90 lg:mx-0 ${fadeUpClass} ${visible} ${delays.description}`}>
@@ -110,7 +110,7 @@ const Hero = () => {
                     size="lg"
                     className="group relative w-48 overflow-hidden bg-gradient-to-r from-[#f4adfb] to-[#5b2873] text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#f4adfb]/25"
                   >
-                    Browse Services
+                    Browse Products
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>

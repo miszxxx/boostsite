@@ -9,7 +9,10 @@ export async function GET(request: NextRequest) {
     // Use the enhanced method to get groups with products
     const result = await sellAppAPI.getGroupsWithProducts();
 
-    return NextResponse.json(result.data, {
+    // Ensure we return an array
+    const responseData = Array.isArray(result.data) ? result.data : [];
+
+    return NextResponse.json(responseData, {
       headers: {
         'Cache-Control': result.cached 
           ? 'public, s-maxage=3600, stale-while-revalidate=86400' // Longer cache for cached data
@@ -20,13 +23,14 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error in products API:', error);
-    return NextResponse.json(
-      { 
-        error: 'Failed to fetch products', 
-        details: error instanceof Error ? error.message : 'Unknown error',
-        timestamp: new Date().toISOString(),
+    
+    // Return empty array instead of error to prevent frontend crashes
+    return NextResponse.json([], {
+      headers: {
+        'Cache-Control': 'no-cache',
+        'X-Data-Source': 'error-fallback',
+        'X-Timestamp': new Date().toISOString(),
       },
-      { status: 500 }
-    );
+    });
   }
 }

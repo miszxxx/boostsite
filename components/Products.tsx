@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import RevealAnimation from "./framer/RevealAnimation";
 import { ShoppingBag, Zap, CrownIcon } from "lucide-react";
 import DisplayProducts from "./DisplayProducts";
-import Script from "next/script";
 import { api } from "@/lib/api";
 
 const Products = () => {
@@ -43,7 +42,7 @@ const Products = () => {
             <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] px-6 py-3 backdrop-blur-sm">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#f4adfb] border-t-transparent"></div>
               <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-lg font-medium text-transparent">
-                Loading Services...
+                Loading Products...
               </span>
             </div>
           </div>
@@ -87,7 +86,7 @@ const Products = () => {
             <div className="inline-flex items-center gap-2 rounded-full border border-[#f4adfb]/20 bg-gradient-to-r from-[#f4adfb]/[0.05] to-[#5b2873]/[0.05] px-6 py-3 backdrop-blur-sm">
               <ShoppingBag className="h-5 w-5 text-[#f4adfb]" />
               <span className="bg-gradient-to-r from-[#f4adfb] to-[#5b2873] bg-clip-text text-lg font-medium text-transparent">
-                Explore Our Services
+                Explore Our Products
               </span>
             </div>
             <h2 className="mt-6 text-4xl font-bold tracking-tight">
@@ -126,11 +125,6 @@ const Products = () => {
       </div>
 
       <link href="https://cdn.sell.app/embed/style.css" rel="stylesheet" />
-      <Script 
-        src="https://cdn.sell.app/embed/script.js" 
-        type="module"
-        strategy="beforeInteractive"
-      />
     </section>
   );
 };

@@ -209,7 +209,7 @@ const DisplayProducts = ({ products }: { products: any }) => {
                         {/* Features Section */}
                         <div className="relative px-6 pb-6 flex-1">
                           <div className="w-full border-t border-[#f4adfb]/20 mb-4"></div>
-                          <div className="text-white/70 text-sm mb-3 font-medium">What's Included</div>
+                          <div className="text-white/70 text-sm mb-3 font-medium">What&apos;s Included</div>
                           <div className="flex flex-col gap-2 mb-6">
                             {getProductFeatures(product).map((feature, featureIndex) => (
                               <div key={featureIndex} className="flex flex-row items-start gap-2">

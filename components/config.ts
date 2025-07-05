@@ -7,7 +7,7 @@ export const LINKS = {
 
 export const NOTIFICATION = {
   showNotification: true,
-  notificationText: "🚀 Premium Discord Tools & Nitro Services | Cryptocurrency Payments Only! 💰",
+  notificationText: "🚀 Premium Discord Tools & Nitro Services | Secure Cryptocurrency Payments! 💰",
   notificationLink: LINKS.DISCORD,
 };
 
@@ -21,7 +21,7 @@ export const LandingPageLinks = [
     link: LINKS.TRUSTPILOT,
   },
   {
-    name: "Services",
+    name: "Products",
     link: "/#products",
   },
   {

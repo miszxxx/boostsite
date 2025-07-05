@@ -110,7 +110,7 @@ const Terms = () => {
               No compensation for security compromises
             </ListItem>
             <ListItem>
-              We reserve the right to terminate services; "lifetime" refers to active platform duration
+              We reserve the right to terminate services; &quot;lifetime&quot; refers to active platform duration
             </ListItem>
             <ListItem>
               License resale requires explicit authorization
@@ -155,21 +155,21 @@ const Terms = () => {
   );
 };
 
-const Section = ({ children }) => (
+const Section = ({ children }: { children: React.ReactNode }) => (
   <div className="space-y-6">{children}</div>
 );
 
-const SectionTitle = ({ children }) => (
+const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   <h2 className="text-2xl font-semibold tracking-tight mb-6 bg-gradient-to-r from-[#f4adfb] via-[#5b2873] to-[#f4adfb] bg-clip-text text-transparent">
     {children}
   </h2>
 );
 
-const List = ({ children }) => (
+const List = ({ children }: { children: React.ReactNode }) => (
   <div className="space-y-4">{children}</div>
 );
 
-const ListItem = ({ children }) => (
+const ListItem = ({ children }: { children: React.ReactNode }) => (
   <div className="flex gap-4 items-start">
     <div className="mt-2">
       <div className="h-2 w-2 rounded-full bg-gradient-to-r from-[#f4adfb] via-[#5b2873] to-[#f4adfb]" />

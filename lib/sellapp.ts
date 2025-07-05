@@ -120,16 +120,28 @@ class SellAppAPI {
   async getGroupsWithProducts() {
     try {
       const groupsResult = await this.getGroups();
-      const groups = groupsResult.data;
+      const groups = Array.isArray(groupsResult.data) ? groupsResult.data : [];
 
       // Fetch products for each group
       const groupsWithProducts = await Promise.all(
         groups.map(async (group: any) => {
           try {
             const productsResult = await this.getGroupProducts(group.id.toString());
+            const productsData = productsResult.data;
+            
+            // Handle different response structures
+            let products = [];
+            if (Array.isArray(productsData)) {
+              products = productsData;
+            } else if (productsData && Array.isArray(productsData.data)) {
+              products = productsData.data;
+            } else if (productsData && productsData.data) {
+              products = [productsData.data];
+            }
+
             return {
               ...group,
-              products: productsResult.data.data || [], // Handle pagination structure
+              products: products,
             };
           } catch (error) {
             console.error(`Error fetching products for group ${group.id}:`, error);
@@ -148,7 +160,13 @@ class SellAppAPI {
       };
     } catch (error) {
       console.error('Error in getGroupsWithProducts:', error);
-      throw error;
+      
+      // Return empty array as fallback
+      return {
+        data: [],
+        success: false,
+        cached: false,
+      };
     }
   }
 }
