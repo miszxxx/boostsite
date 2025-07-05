@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable experimental features for better performance
-  experimental: {
-    serverComponentsExternalPackages: [],
-  },
-  
   // Configure headers for better caching
   async headers() {
     return [
@@ -28,6 +23,35 @@ const nextConfig = {
 
   // Disable strict mode to prevent hydration issues
   reactStrictMode: false,
+
+  // Configure external packages for server components
+  serverExternalPackages: ['mongodb'],
+
+  // Optimize images
+  images: {
+    domains: ['sell.app'],
+    formats: ['image/webp', 'image/avif'],
+  },
+
+  // Compress responses
+  compress: true,
+
+  // Enable SWC minification
+  swcMinify: true,
+
+  // Configure TypeScript
+  typescript: {
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    ignoreBuildErrors: false,
+  },
+
+  // Configure ESLint
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: false,
+  },
 };
 
 export default nextConfig;
